@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import { searchYoutube } from './apiUtils.js';
+import styled from 'styled-components';
+
+const Div = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 7px;
+`;
 
 class Search extends Component {
   constructor(props) {
@@ -23,10 +30,10 @@ class Search extends Component {
 
   render(props) {
     return (
-      <div className="search">
+      <Div className="search">
         <input className="searchInput" type="text" onChange = {this.handleChangeQ}/>
         <button className="searchBtn" onClick={this.handleSearch}>Search</button>
-      </div>
+      </Div>
     );
   }
 }

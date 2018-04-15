@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import Search from './Search.js';
 import './App.css';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+
+`;
+const Header = styled.header`
+  position: relative;
+  padding: 15px;
+  border-bottom: 3px red solid;
+`;
+
 
 class App extends Component {
   constructor() {
@@ -20,11 +31,11 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <header>
+      <Wrapper className="App">
+        <Header>
           <Search updateSearchResults = {this.updateSearchResults} />
-        </header>
-      </div>
+        </Header>
+      </Wrapper>
     );
   }
 }
