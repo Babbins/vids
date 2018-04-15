@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Search from './Search.js';
-import './App.css';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
