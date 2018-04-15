@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Search from './Search.js';
+import VideoList from './VideoList.js'
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Wrapper = styled.div``;
 
-`;
 const Header = styled.header`
   position: relative;
   padding: 15px;
@@ -29,11 +29,15 @@ class App extends Component {
     });
   }
   render() {
+    const {searchResults, savedVids} = this.state;
     return (
       <Wrapper className="App">
         <Header>
-          <Search updateSearchResults = {this.updateSearchResults} />
+          <Search updateSearchResults={this.updateSearchResults} />
         </Header>
+        {searchResults && 
+          <VideoList videos={searchResults} />
+        }
       </Wrapper>
     );
   }
