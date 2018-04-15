@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import './App.css';
 import Search from './Search.js';
 import VideoList from './VideoList.js'
 import styled from 'styled-components';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  background-color: #190847;
+  height: 100%;
+`;
 
 const Header = styled.header`
   position: relative;
-  padding: 15px;
+  padding: 25px;
   border-bottom: 3px red solid;
 `;
 

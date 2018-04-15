@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Card, Icon, Avatar } from 'antd';
+const { Meta } = Card;
 
-export default function(props) {
+
+
+export default function (props) {
   return (
-    <div>
-      <h4>{props.snippet.title}</h4>
-      <a href={props.url}>
-        <img src={props.snippet.thumbnails.medium.url} alt={props.snippet.title} />
-      </a>
-    </div>
+    <Card 
+      hoverable
+      cover={<img alt={props.snippet.title} src={props.snippet.thumbnails.high.url} />}
+      actions={[<Icon type="save" />]}
+    >
+      <Meta
+        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+        title={props.snippet.title}
+        description=""
+      />
+    </Card>
   );
 }
 

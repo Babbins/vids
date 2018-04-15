@@ -14,7 +14,8 @@ export function searchYoutube({
                     part: `snippet`,
                     order,
                     type: `video`,
-                    publishedAfter
+                    publishedAfter,
+                    maxResults: 20
                 }
             })
             .then(function (response) {
