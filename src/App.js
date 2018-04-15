@@ -12,6 +12,8 @@ class App extends Component {
     this.updateSearchResults = this.updateSearchResults.bind(this);
   }
   updateSearchResults(searchResults) {
+    window.searchResults = searchResults;
+    console.log(`searchResults: ${searchResults}`);
     this.setState( (prevState) => {
       return {...prevState, searchResults};
     });
@@ -19,8 +21,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Search updateSearchResults = {this.updateSearchResults} />
-        <p>{this.state.searchResults}</p>
+        <header>
+          <Search updateSearchResults = {this.updateSearchResults} />
+        </header>
       </div>
     );
   }
