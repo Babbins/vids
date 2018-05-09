@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { searchYoutube } from './apiUtils.js';
 import { Input } from 'antd';
+import Filter from './Filter.js';
 import styled from 'styled-components';
 
 const AntSearch = Input.Search;
@@ -26,6 +27,7 @@ class Search extends Component {
   render(props) {
     return (
       <Div className="search">
+        <Filter />
         <AntSearch
           placeholder="Search Youtube"
           onSearch={this.handleSearch}

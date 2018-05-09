@@ -5,7 +5,6 @@ import VideoList from './VideoList.js'
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background-color: #190847;
   height: 100%;
 `;
 
