@@ -11,46 +11,38 @@ class Filter extends Component {
   
   constructor(props) {
     super(props);
-    this.state = {
-      selectedKeys: ['1','5']
-    };
-
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
-    this.setState(prevState => {
-      if (e.key < 5) {
-        this.setState({
-          selectedKeys: [e.key, prevState.selectedKeys[1]]
-        });
-      } else {
-        this.setState({
-          selectedKeys: [prevState.selectedKeys[0], e.key]
-        });
-      }
-    })
+    const filterType = e.keyPath[1];
+    if (filterType === 'Sort By') {
+        this.props.updateFilters({sortBy: e.key});
+    } else if (filterType === 'Upload Date') {
+      this.props.updateFilters({uploadDate: e.key});
+    }
   }
 
   render() {
+    const {sortBy, uploadDate} = this.props;
     const menu = (
       <Menu
-        selectedKeys={this.state.selectedKeys}
+        selectedKeys={[sortBy, uploadDate]}
         onClick={this.handleClick}
       >
-        <SubMenu title="Sort By">
-          <Menu.Item key="1">Views</Menu.Item>
-          <Menu.Item key="2">Relevance</Menu.Item>
-          <Menu.Item key="3">Upload Date</Menu.Item>
-          <Menu.Item key="4">Rating</Menu.Item>
+        <SubMenu title="Sort By" key="Sort By">
+          <Menu.Item key="viewCount">Views</Menu.Item>
+          <Menu.Item key="relevance">Relevance</Menu.Item>
+          <Menu.Item key="date">Upload Date</Menu.Item>
+          <Menu.Item key="rating">Rating</Menu.Item>
         </SubMenu>
-        <SubMenu title="Upload Date">
-          <Menu.Item key="5">Any</Menu.Item>
-          <Menu.Item key="6">Last Hour</Menu.Item>
-          <Menu.Item key="7">Today</Menu.Item>
-          <Menu.Item key="8">This Week</Menu.Item>
-          <Menu.Item key="9">This Month</Menu.Item>
-          <Menu.Item key="10">This Year</Menu.Item>
+        <SubMenu title="Upload Date" key="Upload Date">
+          <Menu.Item key="any">Any</Menu.Item>
+          <Menu.Item key="hour">Last Hour</Menu.Item>
+          <Menu.Item key="day">Today</Menu.Item>
+          <Menu.Item key="week">This Week</Menu.Item>
+          <Menu.Item key="month">This Month</Menu.Item>
+          <Menu.Item key="year">This Year</Menu.Item>
         </SubMenu>
       </Menu>
     );

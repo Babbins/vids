@@ -5,19 +5,35 @@ const { Meta } = Card;
 
 
 
-export default function (props) {
-  return (
-    <Card 
-      hoverable
-      cover={<img alt={props.snippet.title} src={props.snippet.thumbnails.high.url} />}
-      actions={[<Icon type="save" />]}
-    >
-      <Meta
-        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-        title={props.snippet.title}
-        description=""
-      />
-    </Card>
-  );
+export default class Video extends Component {
+  constructor(props) {
+    super(props);
+    console.log('video props', props);
+    this.openVideoOnYoutube = this.openVideoOnYoutube.bind(this);
+  }
+
+  openVideoOnYoutube() {
+    const win = window.open(this.props.url, '_blank');
+    win.focus();
+  }
+
+  render() {
+    const {thumbnails, title, description} = this.props.snippet;
+    return (
+      <Card 
+        hoverable
+        cover={<img alt={title} src={thumbnails.high.url} />}
+        actions={[<Icon type="save" />, <Icon type="youtube" onClick={this.openVideoOnYoutube}/>]}
+      >
+        <Meta
+          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+          title={title}
+          description={description}
+        />
+      </Card>
+    );
+  }
+  
 }
+
 

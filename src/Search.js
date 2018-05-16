@@ -16,18 +16,38 @@ class Search extends Component {
   
   constructor(props) {
     super(props);
+    
+    this.state = {
+      sortBy: 'viewCount',
+      uploadDate: 'any',
+      query: '',
+    };
     this.handleSearch = this.handleSearch.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
   handleSearch(query) {
-    searchYoutube({q: query})
+    this.setState({query});
+    const {sortBy, uploadDate} = this.state;
+    searchYoutube({
+      q: query,
+      order: sortBy,
+      uploadDate
+    })
       .then(this.props.updateSearchResults);
   }
 
-  render(props) {
+  updateState(state) {    
+    this.setState(state, state => {
+      this.handleSearch(this.state.query);
+    });
+  }
+
+  render() {
+    const {sortBy, uploadDate} = this.state;
     return (
       <Div className="search">
-        <Filter />
+        <Filter updateFilters={this.updateState} sortBy={sortBy} uploadDate={uploadDate}/>
         <AntSearch
           placeholder="Search Youtube"
           onSearch={this.handleSearch}
